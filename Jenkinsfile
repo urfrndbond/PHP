@@ -1,14 +1,14 @@
 pipeline{
   agent any
   environment{
-	imagename = "pranshul0412/autophp"
+	imagename = "ajaynegi/php-project"
 	dockerImage = ''
   }
 	  stages{
 		stage("Cloning Git"){
 		  steps{
 			echo 'Cloning Repo...'
-			git([url: 'https://github.com/pranshulmahajan/PHP.git', branch: 'master', credentialsId: 'GITHUB_CREDS'])
+			git([url: 'https://github.com/pranshulmahajan/PHP.git', branch: 'master', credentialsId: 'eb562d7c-b70d-4595-abd8-4e6762a728c9'])
 		  }
 		}
 		stage('Building image') {
@@ -21,7 +21,7 @@ pipeline{
 		stage('Deploy Image') {
 			steps{
 				script {
-					docker.withRegistry( '', 'DockerHub' ) {
+					docker.withRegistry( '', 'f441ae83-f772-4f36-aa05-d198d0814675	' ) {
 						dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push('latest')
 					}
